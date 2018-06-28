@@ -4,8 +4,6 @@ Feature: Bunnings Wish List
   I want to search an item
   so that I select an item to view the details and can add to the wish list 
 
-
-
   Scenario: User can search an item
   Given I open "https://www.bunnings.co.nz/"
    When I search an item 'paint'
