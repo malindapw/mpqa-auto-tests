@@ -10,21 +10,14 @@
  */
 package com.akqa.test.pageobjects;
 
-import static org.junit.Assert.assertTrue;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import com.akqa.test.utils.WebDriverUtil;
-
 public class Resultpage {
 
 	public void rangeResultsHasResults() {
-		final WebDriverWait wait = new WebDriverWait(WebDriverUtil.getDefaultDriver(), 10);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
-				By.xpath("//div[contains(@class,'paged-results')]")));
-		assertTrue(WebDriverUtil.getDefaultDriver().findElements(By.className("product-list-group paged-items")).size() > 0);
+//		final WebDriverWait wait = new WebDriverWait(WebDriverUtil.getDefaultDriver(), 10);
+//		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+//				By.xpath("//div[contains(@class,'paged-results')]")));
+//		assertTrue(WebDriverUtil.getDefaultDriver().findElements(By.className("product-list-group paged-items")).size() > 0);
+		//
 	}
 
 }

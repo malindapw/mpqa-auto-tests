@@ -10,13 +10,11 @@
  */
 package com.akqa.test.baseobjects;
 
-import com.akqa.test.pageobjects.Homepage;
 import com.akqa.test.pageobjects.Resultpage;
-import com.akqa.test.utils.NavigateUtil;
 
 public interface baseObjects {
-	NavigateUtil navigate = new NavigateUtil();
-	Homepage homepage = new Homepage();
+	// NavigateUtil navigate = new NavigateUtil(null);
+	// Homepage homepage = new Homepage();
 	Resultpage resultpage = new Resultpage();
 }
 

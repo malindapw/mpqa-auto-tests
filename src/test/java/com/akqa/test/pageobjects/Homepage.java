@@ -13,17 +13,24 @@ package com.akqa.test.pageobjects;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.akqa.test.utils.WebDriverUtil;
 
 public class Homepage {
 
+	private final WebDriver driver;
+
+	public Homepage() {
+		this.driver = WebDriverUtil.getDefaultDriver();
+	}
+
 	private static final By SEARCH_CONTAINER = By.xpath("//div[contains(@class,'search-container_container')]//input[@type='text']");
 
 	public void searchAnItem(final String searchItem) {
-		WebDriverUtil.getDefaultDriver().findElement(SEARCH_CONTAINER).sendKeys(searchItem);
-		final List<WebElement> searches = WebDriverUtil.getDefaultDriver()
+		this.driver.findElement(SEARCH_CONTAINER).sendKeys(searchItem);
+		final List<WebElement> searches = this.driver
 				.findElements(By.xpath(".//*[contains(@class,'search-container_history_item')]"));
 		searches.get(0).click();
 	}

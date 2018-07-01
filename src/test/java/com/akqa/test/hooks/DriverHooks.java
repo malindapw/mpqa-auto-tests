@@ -8,23 +8,25 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.utils;
+package com.akqa.test.hooks;
 
-import org.openqa.selenium.WebDriver;
+import com.akqa.test.utils.WebDriverUtil;
 
-public class NavigateUtil {
+import cucumber.api.Scenario;
+import cucumber.api.java.After;
 
-	private final WebDriver driver;
+public class DriverHooks {
 
-	public NavigateUtil() {
-		this.driver = WebDriverUtil.getDefaultDriver();
-	}
-	/** Method to open link
-	 * @param url : String : URL for navigation
-	 */
-	public void navigateTo(final String url)
-	{
-		this.driver.get(url);
+	WebDriverUtil wbDriverUtil;
+
+	public static final int CLEAN_UP_WEB_DRIVER_AFTER = 0;
+
+	@After(order = CLEAN_UP_WEB_DRIVER_AFTER)
+	public void afterScenario(final Scenario result) {
+		if (result.getName().contains("The number of errors and warnings displayed")) {
+			return;
+		}
+		WebDriverUtil.clearWebDriver();
 	}
 
 }
