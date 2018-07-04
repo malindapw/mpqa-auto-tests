@@ -68,27 +68,50 @@
 			<version>1.2.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+         <groupId>log4j</groupId>
+         <artifactId>log4j</artifactId>
+         <version>1.2.17</version>
+    </dependency>
 	</dependencies>
     <build>
 		<plugins>
+						<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<execution>
+						<id>Upload report to XBDD</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target name="bdd.report.publish" if="publish.to.xbdd">
+								<exec executable="curl">
+									<arg value="-X" />
+									<arg value="PUT" />
+									<arg value="-d" />
+									<arg value="@./target/cucumber-reports/json/cucumber.json" />
+									<arg value="${xbddInstance}/rest/reports/${project.artifactId}/${xbddVersion}/${buildNumber}" />
+									<arg value="--header" />
+									<arg value="Content-Type:application/json" />
+									<arg value="-u" />
+									<arg value="${xbdd.username}:${xbdd.password}" />
+									<arg value="-k" />
+								</exec>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.2</version>
+				<version>3.3</version>
 				<configuration>
-					<encoding>UTF-8</encoding>
 					<source>1.8</source>
 					<target>1.8</target>
-					<systemPropertyVariables>
-						<property>
-							<name>browser</name>
-							<value>${browser}</value>
-						</property>
-						<property>
-							<name>cloud_config</name>
-							<value>${cloud_config}</value>
-						</property>
-					</systemPropertyVariables>
 				</configuration>
 			</plugin>
 		</plugins>
