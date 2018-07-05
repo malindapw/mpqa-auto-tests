@@ -13,12 +13,14 @@ package com.akqa.test.utils;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -46,6 +48,15 @@ public class WebUnitl {
 					driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
 		} catch (final TimeoutException ex) {
 			LOGGER.warn("Selenium has failed to detect if the page has loaded. Allowing tests to continue as they may still pass.");
+		}
+	}
+
+	public static void waitUntilVisibilityOfElementLocated(final WebDriver webDriver, final By condition) {
+		try {
+			new WebDriverWait(webDriver, TIMEOUT).until(
+					driver -> ExpectedConditions.invisibilityOfElementLocated(condition));
+		} catch (final TimeoutException ex) {
+			LOGGER.warn("Selenium has failed to detect the visibility of element");
 		}
 	}
 }

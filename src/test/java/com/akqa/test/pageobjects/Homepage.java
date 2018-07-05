@@ -17,6 +17,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.akqa.test.utils.WebDriverUtil;
+import com.akqa.test.utils.WebUnitl;
 
 public class Homepage {
 
@@ -27,11 +28,13 @@ public class Homepage {
 	}
 
 	private static final By SEARCH_CONTAINER = By.xpath("//div[contains(@class,'search-container_container')]//input[@type='text']");
+	private static final By AUTO_COMPLETE_ELEMENT_LIST = By.cssSelector(".search-container_history_list");
 
 	public void searchAnItem(final String searchItem) {
 		this.driver.findElement(SEARCH_CONTAINER).sendKeys(searchItem);
 		final List<WebElement> searches = this.driver
 				.findElements(By.xpath(".//*[contains(@class,'search-container_history_item')]"));
+		WebUnitl.waitUntilVisibilityOfElementLocated(this.driver, AUTO_COMPLETE_ELEMENT_LIST);
 		searches.get(0).click();
 	}
 }
