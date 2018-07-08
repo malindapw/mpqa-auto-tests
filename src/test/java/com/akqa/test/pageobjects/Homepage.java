@@ -13,29 +13,28 @@ package com.akqa.test.pageobjects;
 import java.util.List;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.akqa.test.utils.WebDriverUtil;
+import com.akqa.test.driver.CachedWebDriver;
 import com.akqa.test.utils.WebUnitl;
 
 public class Homepage {
 
-	private final WebDriver driver;
+	private final CachedWebDriver driver;
 
-	public Homepage() {
-		this.driver = WebDriverUtil.getDefaultDriver();
+	public Homepage(final CachedWebDriver driver) {
+		this.driver = driver;
 	}
 
 	private static final By SEARCH_CONTAINER = By.xpath("//div[contains(@class,'search-container_container')]//input[@type='text']");
-	private static final By AUTO_COMPLETE_ELEMENT_LIST = By.cssSelector(".search-container_history_list");
+	private static final By AUTO_COMPLETE_ELEMENT_LIST = By.id("ui-id-2");
 
 	public void searchAnItem(final String searchItem) {
 		this.driver.findElement(SEARCH_CONTAINER).sendKeys(searchItem);
+		WebUnitl.waitUntilAutoCompleteLoaded(this.driver, AUTO_COMPLETE_ELEMENT_LIST);
 		final List<WebElement> searches = this.driver
-				.findElements(By.xpath(".//*[contains(@class,'search-container_history_item')]"));
-		WebUnitl.waitUntilVisibilityOfElementLocated(this.driver, AUTO_COMPLETE_ELEMENT_LIST);
-		searches.get(0).click();
+				.findElements(By.xpath("//ul[@id='ui-id-2']//li[@class='ui-menu-item']"));
+		searches.get(1).click();
 	}
 }
 

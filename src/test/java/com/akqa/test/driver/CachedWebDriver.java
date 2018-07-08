@@ -8,13 +8,16 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.baseobjects;
+package com.akqa.test.driver;
 
-import com.akqa.test.pageobjects.Resultpage;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-public interface baseObjects {
-	// NavigateUtil navigate = new NavigateUtil(null);
-	// Homepage homepage = new Homepage();
-	Resultpage resultpage = new Resultpage();
+import com.akqa.test.utils.WebDriverUtil;
+
+public class CachedWebDriver extends EventFiringWebDriver {
+
+	public CachedWebDriver() {
+		super(WebDriverUtil.getDefaultDriver());
+	}
 }
 

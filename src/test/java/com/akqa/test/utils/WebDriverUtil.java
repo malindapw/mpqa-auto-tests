@@ -21,6 +21,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class WebDriverUtil {
 
 	private static WebDriver driver;
+	// private static Dimension defaultDimension;
 	public static long DEFAULT_WAIT = 20;
 
 	static {
@@ -39,7 +40,8 @@ public class WebDriverUtil {
 		driver = chooseWebDriver();
 		driver.manage().timeouts().setScriptTimeout(DEFAULT_WAIT,
 				TimeUnit.SECONDS);
-		driver.manage().window().maximize();
+		// driver.manage().window().maximize();
+		// driver.manage().window().setSize(defaultDimension);
 		return driver;
 	}
 
@@ -61,7 +63,6 @@ public class WebDriverUtil {
 		System.setProperty("webdriver.chrome.driver", "//Users//malindaw//Downloads//chromedriver");
 		// System.setProperty("webdriver.gecko.driver", "./geckodriver");
 		final WebDriver chromeDriver = new ChromeDriver();
-		// driver.manage().window().getSize();
 		return chromeDriver;
 	}
 }

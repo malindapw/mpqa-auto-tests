@@ -20,9 +20,12 @@ import org.openqa.selenium.NoSuchFrameException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.base.Function;
 
 
 
@@ -54,10 +57,27 @@ public class WebUnitl {
 	public static void waitUntilVisibilityOfElementLocated(final WebDriver webDriver, final By condition) {
 		try {
 			new WebDriverWait(webDriver, TIMEOUT).until(
-					driver -> ExpectedConditions.invisibilityOfElementLocated(condition));
+					driver -> ExpectedConditions.visibilityOfElementLocated(condition));
 		} catch (final TimeoutException ex) {
 			LOGGER.warn("Selenium has failed to detect the visibility of element");
 		}
+	}
+
+	public static void waitUntilAutoCompleteLoaded(final WebDriver webDriver, final By condition) {
+		waitUntilConditionMet(webDriver, new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(final WebDriver driver) {
+				return driver.findElement(condition).isDisplayed();
+			}
+		});
+	}
+
+	public static <T, E> T waitUntilConditionMet(final E input, final Function<E, T> condition) {
+		return await(input).until(condition);
+	}
+
+	private static <T> FluentWait<T> await(final T driver) {
+		return new Wait<T>(driver);
 	}
 }
 

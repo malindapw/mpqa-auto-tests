@@ -10,10 +10,9 @@
  */
 package com.akqa.test.stepdefs;
 
-import com.akqa.test.baseobjects.baseObjects;
 import com.akqa.test.pageobjects.Homepage;
+import com.akqa.test.pageobjects.Resultpage;
 import com.akqa.test.utils.NavigateUtil;
-import com.akqa.test.utils.WebDriverUtil;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -21,13 +20,15 @@ import cucumber.api.java.en.When;
 
 
 
-public class WishListStepDefs implements baseObjects {
+public class WishListStepDefs {
 
 	// private final NavigateUtil navigate;
-	WebDriverUtil driver;
+	private final Homepage homepage;
+	private final Resultpage resultpage;
 
-	public WishListStepDefs() {
-
+	public WishListStepDefs(final Homepage homepage, final Resultpage resultpage) {
+		this.homepage = homepage;
+		this.resultpage = resultpage;
 	}
 
 	@Then("^I open \"([^\"]*)\"$")
@@ -38,14 +39,13 @@ public class WishListStepDefs implements baseObjects {
 
 
 	@When("^I search an item '(.*)'$")
-	public void i_search_an_item_paint(final String searchItem) {
-		final Homepage homepage = new Homepage();
-		homepage.searchAnItem(searchItem);
+	public void i_search_an_item_paint(final String searchItem) throws InterruptedException {
+		this.homepage.searchAnItem(searchItem);
 	}
 
 	@Then("^I can see the results$")
 	public void i_can_see_the_results() {
-		resultpage.rangeResultsHasResults();
+		this.resultpage.rangeResultsHasResults();
 	}
 }
 

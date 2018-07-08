@@ -10,9 +10,18 @@
  */
 package com.akqa.test.pageobjects;
 
+import com.akqa.test.driver.CachedWebDriver;
+import com.akqa.test.utils.WebUnitl;
+
 public class Resultpage {
 
+	CachedWebDriver webdriver;
+
+	public Resultpage() {
+	}
+
 	public void rangeResultsHasResults() {
+		WebUnitl.waitUntilPageLoaded(this.webdriver);
 //		final WebDriverWait wait = new WebDriverWait(WebDriverUtil.getDefaultDriver(), 10);
 //		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 //				By.xpath("//div[contains(@class,'paged-results')]")));
