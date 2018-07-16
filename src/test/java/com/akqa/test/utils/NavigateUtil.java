@@ -25,7 +25,7 @@ public class NavigateUtil {
 	public void navigateTo(final String url)
 	{
 		this.driver.get(url);
-		WebUnitl.waitUntilPageLoaded(this.driver);
+		WebUtil.waitUntilPageLoaded(this.driver);
 	}
 
 }

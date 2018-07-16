@@ -10,30 +10,34 @@
  */
 package com.akqa.test.pageobjects;
 
-import java.util.List;
-
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.akqa.test.driver.CachedWebDriver;
 import com.akqa.test.utils.WebUtil;
 
-public class Resultpage {
+public class ProductDetailsPage {
 
 	final private WebDriver driver;
+	final private static String ITEM = "//DIV[@class='product-list__prodname product-list__title fn'][text()='%s']";
 
-	public Resultpage(final CachedWebDriver webdriver) {
+	public ProductDetailsPage(final CachedWebDriver webdriver) {
 		this.driver = webdriver;
 	}
 
-	public void rangeResultsHasResults() {
+	public void selectItem(final String item) {
 		WebUtil.waitUntilPageLoaded(this.driver);
-		WebUtil.waitUntilVisibilityOfElementLocated(this.driver, By.cssSelector(".paged-results"));
-		final List<WebElement> resultsLists = this.driver.findElements(By.cssSelector(".product-list__item"));
-		Assert.assertTrue(resultsLists.size() > 0);
+		this.driver.findElement(
+				By.xpath(String.format(ITEM, item)))
+				.click();
 	}
 
+	public void addItemToWishList() {
+		this.driver.findElement(By.cssSelector("button.btn-add-wishlist.inactive")).click();
+		// WebUtil.waitUntilVisibilityOfElementLocated(this.driver, By.cssSelector("button.btn-add-wishlist.added"));
+		WebUtil.waitUntilConditionMet(this.driver,
+				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-wishlist.added")));
+	}
 }
 

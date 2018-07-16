@@ -29,10 +29,10 @@ import com.google.common.base.Function;
 
 
 
-public class WebUnitl {
+public class WebUtil {
 
 	public static final int TIMEOUT = 60;
-	private static final Logger LOGGER = Logger.getLogger(WebUnitl.class);
+	private static final Logger LOGGER = Logger.getLogger(WebUtil.class);
 
 	public static class Wait<T> extends FluentWait<T> {
 		public Wait(final T t) {

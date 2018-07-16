@@ -12,7 +12,6 @@ package com.akqa.test.pageobjects;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,20 +19,28 @@ import org.openqa.selenium.WebElement;
 import com.akqa.test.driver.CachedWebDriver;
 import com.akqa.test.utils.WebUtil;
 
-public class Resultpage {
+public class MyWishListPage {
+	WebDriver driver;
 
-	final private WebDriver driver;
-
-	public Resultpage(final CachedWebDriver webdriver) {
-		this.driver = webdriver;
+	public MyWishListPage(final CachedWebDriver cachedWebDriver) {
+		this.driver = cachedWebDriver;
 	}
 
-	public void rangeResultsHasResults() {
+	public void openWishList() {
+		this.driver.findElement(By.cssSelector(".header_navbar-link.header_navbar-link-wishlist")).click();
 		WebUtil.waitUntilPageLoaded(this.driver);
-		WebUtil.waitUntilVisibilityOfElementLocated(this.driver, By.cssSelector(".paged-results"));
-		final List<WebElement> resultsLists = this.driver.findElements(By.cssSelector(".product-list__item"));
-		Assert.assertTrue(resultsLists.size() > 0);
 	}
 
+	public boolean IsItemOnWishList(final String item) {
+		final List<WebElement> itemLists = this.driver.findElements(By.cssSelector("a.GAEvent.display-block"));
+		itemLists.forEach(
+				itemList -> {
+					if (itemList.getText().contains(item)) {
+						return;
+					}
+				}
+		);
+		return false;
+	}
 }
 

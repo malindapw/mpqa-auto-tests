@@ -6,5 +6,6 @@ Feature: Bunnings Wish List
 
   Scenario: User can search an item
   Given I open "https://www.bunnings.co.nz/"
-   When I search an item 'paint'
-   Then I can see the results
+  When I search an item 'paint'
+  Then I can see the results
+  And I can add "Dulux 1L Ceiling White Paint" in to my wish list

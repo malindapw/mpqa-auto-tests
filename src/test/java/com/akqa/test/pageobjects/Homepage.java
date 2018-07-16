@@ -16,7 +16,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import com.akqa.test.driver.CachedWebDriver;
-import com.akqa.test.utils.WebUnitl;
+import com.akqa.test.utils.WebUtil;
 
 public class Homepage {
 
@@ -31,7 +31,7 @@ public class Homepage {
 
 	public void searchAnItem(final String searchItem) {
 		this.driver.findElement(SEARCH_CONTAINER).sendKeys(searchItem);
-		WebUnitl.waitUntilAutoCompleteLoaded(this.driver, AUTO_COMPLETE_ELEMENT_LIST);
+		WebUtil.waitUntilAutoCompleteLoaded(this.driver, AUTO_COMPLETE_ELEMENT_LIST);
 		final List<WebElement> searches = this.driver
 				.findElements(By.xpath("//ul[@id='ui-id-2']//li[@class='ui-menu-item']"));
 		searches.get(1).click();
