@@ -33,14 +33,7 @@ public class MyWishListPage {
 
 	public boolean IsItemOnWishList(final String item) {
 		final List<WebElement> itemLists = this.driver.findElements(By.cssSelector("a.GAEvent.display-block"));
-		itemLists.forEach(
-				itemList -> {
-					if (itemList.getText().contains(item)) {
-						return;
-					}
-				}
-		);
-		return false;
+		return itemLists.stream().anyMatch(itemList -> itemList.getText().contains(item));
 	}
 }
 

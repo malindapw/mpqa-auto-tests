@@ -12,6 +12,9 @@ package com.akqa.test.utils;
 
 
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -40,8 +43,6 @@ public class WebDriverUtil {
 		driver = chooseWebDriver();
 		driver.manage().timeouts().setScriptTimeout(DEFAULT_WAIT,
 				TimeUnit.SECONDS);
-		// driver.manage().window().maximize();
-		// driver.manage().window().setSize(defaultDimension);
 		return driver;
 	}
 
@@ -50,8 +51,6 @@ public class WebDriverUtil {
 			try {
 				driver.quit();
 			} catch (final WebDriverException e) {
-				// Selenium has probably already timed out.
-				// This will probably happen every time too so don't print stacktrace.
 				System.out.println("Failed to quit WebDriver: " + e.getMessage());
 			}
 
@@ -60,10 +59,37 @@ public class WebDriverUtil {
 	}
 
 	private static WebDriver chooseWebDriver() {
-		System.setProperty("webdriver.chrome.driver", "//Users//malindaw//Downloads//chromedriver");
-		// System.setProperty("webdriver.gecko.driver", "./geckodriver");
-		final WebDriver chromeDriver = new ChromeDriver();
-		return chromeDriver;
+		final String driverType = getTestUserProperties().getProperty("driver.type");
+
+		switch (driverType.toLowerCase()) {
+			case "firefox":
+				System.setProperty("webdriver.gecko.driver", "./geckodriver");
+				final WebDriver fireFoxDriver = new ChromeDriver();
+				return fireFoxDriver;
+			case "chrome":
+				System.setProperty("webdriver.chrome.driver", "//Users//malindaw//Downloads//chromedriver");
+				final WebDriver chromeDriver = new ChromeDriver();
+				return chromeDriver;
+			default:
+				throw new IllegalArgumentException("Wrong choice of web driver");
+		}
+	}
+
+	/**
+	 * Read properties from configuration file.
+	 *
+	 * @return the properties.
+	 */
+	private static Properties getTestUserProperties() {
+		final URL dataURL = WebDriverUtil.class.getClassLoader().getResource("environment.properties");
+		final Properties props = new Properties();
+		try {
+			props.load(dataURL.openStream());
+		} catch (final IOException e) {
+			throw new RuntimeException(e);
+		}
+
+		return props;
 	}
 }
 

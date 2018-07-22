@@ -62,7 +62,7 @@ public class WishListStepDefs {
 		this.productDetailsPage.selectItem(item);
 		this.productDetailsPage.addItemToWishList();
 		this.myWishListPage.openWishList();
-		assertTrue(this.myWishListPage.IsItemOnWishList(item));
+		assertTrue("No item added into wishlist", this.myWishListPage.IsItemOnWishList(item));
 	}
 }
 

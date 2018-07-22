@@ -34,7 +34,7 @@ public class ProductDetailsPage {
 	}
 
 	public void addItemToWishList() {
-		this.driver.findElement(By.cssSelector("button.btn-add-wishlist.inactive")).click();
+		this.driver.findElement(By.cssSelector("button.btn-add-wishlist")).click();
 		// WebUtil.waitUntilVisibilityOfElementLocated(this.driver, By.cssSelector("button.btn-add-wishlist.added"));
 		WebUtil.waitUntilConditionMet(this.driver,
 				ExpectedConditions.visibilityOfElementLocated(By.cssSelector("button.btn-add-wishlist.added")));
