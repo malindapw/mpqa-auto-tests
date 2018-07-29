@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverUtil {
 
@@ -43,6 +44,7 @@ public class WebDriverUtil {
 		driver = chooseWebDriver();
 		driver.manage().timeouts().setScriptTimeout(DEFAULT_WAIT,
 				TimeUnit.SECONDS);
+		// driver.manage().window().setSize(new Dimension(2560, 1440));
 		return driver;
 	}
 
@@ -60,14 +62,16 @@ public class WebDriverUtil {
 
 	private static WebDriver chooseWebDriver() {
 		final String driverType = getTestUserProperties().getProperty("driver.type");
+		final String chromeDriverLocation = getTestUserProperties().getProperty("chrome.driver.location");
+		final String geckoDriverLocation = getTestUserProperties().getProperty("gecko.driver.location");
 
 		switch (driverType.toLowerCase()) {
 			case "firefox":
-				System.setProperty("webdriver.gecko.driver", "./geckodriver");
-				final WebDriver fireFoxDriver = new ChromeDriver();
+				System.setProperty("webdriver.gecko.driver", geckoDriverLocation);
+				final WebDriver fireFoxDriver = new FirefoxDriver();
 				return fireFoxDriver;
 			case "chrome":
-				System.setProperty("webdriver.chrome.driver", "//Users//malindaw//Downloads//chromedriver");
+				System.setProperty("webdriver.chrome.driver", chromeDriverLocation);
 				final WebDriver chromeDriver = new ChromeDriver();
 				return chromeDriver;
 			default:
