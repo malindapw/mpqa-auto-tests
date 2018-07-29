@@ -8,14 +8,14 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.hooks;
+package com.mpqa.test.hooks;
 
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriverException;
 
-import com.akqa.test.driver.CachedWebDriver;
-import com.akqa.test.utils.WebDriverUtil;
+import com.mpqa.test.driver.CachedWebDriver;
+import com.mpqa.test.utils.WebDriverUtil;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;

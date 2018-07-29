@@ -8,15 +8,15 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.stepdefs;
+package com.mpqa.test.stepdefs;
 
 import static org.junit.Assert.assertTrue;
 
-import com.akqa.test.pageobjects.Homepage;
-import com.akqa.test.pageobjects.MyWishListPage;
-import com.akqa.test.pageobjects.ProductDetailsPage;
-import com.akqa.test.pageobjects.Resultpage;
-import com.akqa.test.utils.NavigateUtil;
+import com.mpqa.test.pageobjects.Homepage;
+import com.mpqa.test.pageobjects.MyWishListPage;
+import com.mpqa.test.pageobjects.ProductDetailsPage;
+import com.mpqa.test.pageobjects.Resultpage;
+import com.mpqa.test.utils.NavigateUtil;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;

@@ -8,7 +8,7 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.utils;
+package com.mpqa.test.utils;
 
 import org.openqa.selenium.WebDriver;
 

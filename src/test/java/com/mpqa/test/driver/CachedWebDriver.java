@@ -8,11 +8,11 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.driver;
+package com.mpqa.test.driver;
 
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import com.akqa.test.utils.WebDriverUtil;
+import com.mpqa.test.utils.WebDriverUtil;
 
 public class CachedWebDriver extends EventFiringWebDriver {
 

@@ -8,14 +8,14 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test.pageobjects;
+package com.mpqa.test.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import com.akqa.test.driver.CachedWebDriver;
-import com.akqa.test.utils.WebUtil;
+import com.mpqa.test.driver.CachedWebDriver;
+import com.mpqa.test.utils.WebUtil;
 
 public class ProductDetailsPage {
 

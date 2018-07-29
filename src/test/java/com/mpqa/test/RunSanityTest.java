@@ -8,7 +8,7 @@
  * the publisher. Infringers of copyright render themselves liable for
  * prosecution.
  */
-package com.akqa.test;
+package com.mpqa.test;
 
 import org.junit.runner.RunWith;
 
